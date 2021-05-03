@@ -47,6 +47,7 @@ class HotitemsAdapter(private var itemList: ArrayList<SimpleFooditemsModel>) :
 //            intent.putExtra("passhotIV", searchList[position].sf_image.toString())
 //            intent.putExtra("passhotTV", searchList[position].sf_title)
 //            mcontext.startActivity(intent)
+            Toast.makeText(mcontext,"敬請期待",Toast.LENGTH_LONG).show()
 
             Log.d("Selected:", searchList[position].sf_title)
         }
