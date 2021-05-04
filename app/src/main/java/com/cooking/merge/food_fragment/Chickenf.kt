@@ -15,7 +15,6 @@ import com.cooking.merge.adapters.OnFoodItemClickListener
 import com.cooking.merge.models.FooditemsModel
 import kotlinx.android.synthetic.main.recycler_layout.view.*
 
-
 class Chickenf: Fragment(), OnFoodItemClickListener
  {
     private var recyclerView: RecyclerView? = null

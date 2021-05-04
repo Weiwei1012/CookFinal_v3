@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cooking.merge.MainActivity
 import com.cooking.merge.R
-import com.cooking.merge.SearchDetailsActivity
+import com.cooking.merge.search.SearchDetailsActivity
 import com.cooking.merge.adapters.Permissions.CAMERA_PERMISSIONS
 import com.cooking.merge.adapters.HotitemsAdapter
-import com.cooking.merge.models.SimpleFooditemsModel
+import com.cooking.merge.models.HotitemsModel
 import kotlinx.android.synthetic.main.fragment_search.*
 
 
@@ -27,7 +27,7 @@ class SearchFragment : Fragment() {
 
     lateinit var adapter: HotitemsAdapter
     lateinit var hotlist_rv: RecyclerView
-    lateinit var hotlist: ArrayList<SimpleFooditemsModel>
+    lateinit var hotlist: ArrayList<HotitemsModel>
     lateinit var gridLayoutManager: GridLayoutManager
 
     override fun onCreateView(
@@ -82,11 +82,10 @@ class SearchFragment : Fragment() {
 
 
                 val intent = Intent(context, SearchDetailsActivity::class.java)
+                val intentAllList = Intent(context,SearchDetailsActivity::class.java)
 
                 // distinct 可過濾在陣列中重複的字串
                 intent.putStringArrayListExtra("passsearched", ArrayList(ingredients_array.distinct()))
-                //intent.putStringArrayListExtra("passsearched", ArrayList(outputList))
-
                 startActivity(intent)
 
 //                else{
@@ -121,20 +120,20 @@ class SearchFragment : Fragment() {
         private const val CAMERA_REQUEST_CODE = 1114
     }
 
-    private fun getList(): ArrayList<SimpleFooditemsModel> {
+    private fun getList(): ArrayList<HotitemsModel> {
         //設定熱門搜尋的選項們
         val hotlist_items = arrayOf("快速晚餐", "高麗菜", "馬鈴薯", "簡易家常菜", "雞肉", "超簡單甜點", "家常菜 肉", "減醣")
 
         val hotlist_images = arrayOf(
-            R.drawable.ic_logo, R.drawable.ic_logo, R.drawable.ic_logo, R.drawable.ic_logo,
-            R.drawable.ic_logo, R.drawable.ic_logo, R.drawable.ic_logo, R.drawable.ic_logo
+            R.drawable.fastdinner, R.drawable.cabbage, R.drawable.potato, R.drawable.easyhomefood,
+            R.drawable.chickenhot, R.drawable.easydessert, R.drawable.homecookmeat, R.drawable.sugarfree
         )
 
         //因為RecyclerView_Adapter所要的參數為ArrayList型態
-        val hotList = ArrayList<SimpleFooditemsModel>()
+        val hotList = ArrayList<HotitemsModel>()
         //因此需另外將Array中的string加入到ArrayList中
         for (i in hotlist_items.indices) {
-            hotList.add(SimpleFooditemsModel(hotlist_images[i], hotlist_items[i]))
+            hotList.add(HotitemsModel(hotlist_images[i], hotlist_items[i]))
         }
 
         return hotList

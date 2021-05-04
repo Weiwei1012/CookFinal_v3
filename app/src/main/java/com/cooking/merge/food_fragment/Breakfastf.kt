@@ -13,15 +13,14 @@ import com.cooking.merge.R
 import com.cooking.merge.adapters.FooditemsAdapter
 import com.cooking.merge.adapters.OnFoodItemClickListener
 import com.cooking.merge.models.FooditemsModel
-
 import kotlinx.android.synthetic.main.recycler_layout.view.*
-
 
 class Breakfastf : Fragment() , OnFoodItemClickListener{
     private var recyclerView: RecyclerView? = null
     lateinit var gridLayoutManager: GridLayoutManager
     lateinit var foodList: ArrayList<FooditemsModel>
     lateinit var foodiesAdapters: FooditemsAdapter  //繼承FooditemsAdapter
+
 
     ////////////////////////////////////////////////array////////////////////////////////////////////////
     private val titles = arrayOf(

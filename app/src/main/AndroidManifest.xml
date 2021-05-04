@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TabLayoutKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SearchDetailsActivity"></activity>
+        <activity android:name=".search.SearchDetailsActivity"></activity>
         <activity android:name=".web.Webf" />
         <activity android:name=".MainActivity" />
         <activity android:name=".welcome_page.Welcomef">

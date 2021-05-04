@@ -1,7 +1,9 @@
 package com.cooking.merge.bottom_fragments
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,13 +32,11 @@ class FavoritesFragment: Fragment()  , OnFavItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View
-    {
+    ): View {
         return inflater.inflate(R.layout.recycler_layout, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //favdb = context?.let { FavDataBase(it) }!!
         favdb = FavDataBase(requireContext())
         recyclerView = view.my_recycler_view
@@ -50,15 +50,6 @@ class FavoritesFragment: Fragment()  , OnFavItemClickListener {
         recyclerView?.setHasFixedSize(true)
         ///// design the gridlayout & set recyclerview /////
 
-        loadData()
-
-        favAdapters = FavitemsAdapter(requireContext(), this, favList)   //adapter按照位置擺放foodlist裡的所有物品
-        recyclerView?.adapter = favAdapters
-
-    }
-
-    private fun loadData()
-    {
         favList = ArrayList()
         favList.clear()
         val db = favdb.readableDatabase
@@ -68,23 +59,39 @@ class FavoritesFragment: Fragment()  , OnFavItemClickListener {
                 val title = cursor.getString(cursor.getColumnIndex(favdb.ITEM_TITLE))
                 val id = cursor.getString(cursor.getColumnIndex(favdb.KEY_ID))
                 val image = cursor.getString(cursor.getColumnIndex(favdb.ITEM_IMAGE)).toInt()
-                val addfav = FavitemsModel(image, title, id)
+                val ingredient = cursor.getString(cursor.getColumnIndex(favdb.ITEM_INGREDIENT))
+                val sauce = cursor.getString(cursor.getColumnIndex(favdb.ITEM_SAUCE))
+                val link = cursor.getString(cursor.getColumnIndex(favdb.ITEM_LINK))
+                val addfav = FavitemsModel(image, title, ingredient, sauce, link, id)
                 favList.add(addfav)
+
             }
         } finally {
             if (cursor != null && cursor.isClosed) cursor.close()
             db.close()
         }
+        var fav = favList
+        favAdapters =
+            FavitemsAdapter(requireContext(), this, favList)   //adapter按照位置擺放foodlist裡的所有物品
+        recyclerView?.adapter = favAdapters
 
     }
 
     override fun onItemClick(item: FavitemsModel, position: Int) {
+        //////receive data from bundle//////
 
+        //////receive data from bundle//////
         val intent = Intent(context, FoodDetailsf::class.java)
-
+        //putExtra("name",favList.title)
+        intent.putExtra("FOODIMAGE", item.fav_image.toString())
+        intent.putExtra("FOODNAME", item.fav_title)
+        intent.putExtra("FOODINGREDIENT", item.fav_ingredient)
+        intent.putExtra("FOODSAUCE", item.fav_sauce)
+        intent.putExtra("FOODLINK", item.fav_link)
         startActivity(intent)
-    }
 
+
+    }
 }
 
 

@@ -73,12 +73,15 @@ class FooditemsAdapter(
         }
 
         private fun favonClick(itemView: View) {
-            val foodies: FooditemsModel = fooditems.get(adapterPosition)
-            if (foodies.favStatus.equals("0")) {
+            val foodies: FooditemsModel = fooditems[adapterPosition]
+            if (foodies.favStatus == "0") {
                 foodies.favStatus = "1"
                 favdb.insertIntoTheDatabase(
                     foodies.alphaChar,
                     foodies.iconsChar,
+                    foodies.ingredient,
+                    foodies.sauce,
+                    foodies.link,
                     foodies.key_id,
                     foodies.favStatus
                 )

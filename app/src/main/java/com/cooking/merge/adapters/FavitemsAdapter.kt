@@ -36,7 +36,6 @@ class FavitemsAdapter(
     override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
         holder.favIMV.setImageResource(favitems[position].fav_image)
         holder.favTV.text = favitems[position].fav_title
-
         holder.init(favitems[position], favclickListener)
 
     }
@@ -58,7 +57,7 @@ class FavitemsAdapter(
         private fun removefav(itemView: View) {
             val position = adapterPosition
             val favM: FavitemsModel = favitems[adapterPosition]
-            favdb.remove_fav(favM.key_id)
+            favdb.remove_fav(favM.fav_key_id)
 
             favitems.removeAt(position)
             notifyItemRemoved(position)
@@ -71,6 +70,7 @@ class FavitemsAdapter(
 
             itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
+
             }
         }
         //////// 點進內頁的clicklistener func ////////

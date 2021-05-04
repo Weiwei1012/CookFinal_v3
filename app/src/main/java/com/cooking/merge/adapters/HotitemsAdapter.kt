@@ -10,15 +10,15 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.cooking.merge.R
-import com.cooking.merge.SearchDetailsActivity
-import com.cooking.merge.models.SimpleFooditemsModel
+import com.cooking.merge.models.HotitemsModel
+import com.cooking.merge.search.SearchDetailsActivity
 import kotlinx.android.synthetic.main.cardview_layout_search.view.*
 import kotlin.collections.ArrayList
 
-class HotitemsAdapter(private var itemList: ArrayList<SimpleFooditemsModel>) :
+class HotitemsAdapter(private var itemList: ArrayList<HotitemsModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    var searchList = ArrayList<SimpleFooditemsModel>()
+    var searchList = ArrayList<HotitemsModel>()
 
     lateinit var mcontext: Context
 
@@ -43,11 +43,14 @@ class HotitemsAdapter(private var itemList: ArrayList<SimpleFooditemsModel>) :
         holder.itemView.TV_search.setTextColor(Color.BLACK)
 
         holder.itemView.setOnClickListener {
-//            val intent = Intent(mcontext, SearchDetailsActivity::class.java)
-//            intent.putExtra("passhotIV", searchList[position].sf_image.toString())
-//            intent.putExtra("passhotTV", searchList[position].sf_title)
-//            mcontext.startActivity(intent)
-            Toast.makeText(mcontext,"敬請期待",Toast.LENGTH_LONG).show()
+            val intent = Intent(mcontext, SearchDetailsActivity::class.java)
+////            intent.putExtra("passhotIV", searchList[position].sf_image.toString())
+////            intent.putExtra("passhotTV", searchList[position].sf_title)
+            intent.putExtra("hot",searchList[position].sf_title)
+//
+            mcontext.startActivity(intent)
+
+            //Toast.makeText(mcontext,"敬請期待",Toast.LENGTH_LONG).show()
 
             Log.d("Selected:", searchList[position].sf_title)
         }

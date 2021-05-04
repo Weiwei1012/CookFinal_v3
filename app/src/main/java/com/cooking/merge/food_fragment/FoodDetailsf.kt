@@ -24,7 +24,7 @@ class FoodDetailsf : AppCompatActivity() {
         //////返回鈕//////
 
         //////set data//////
-        IV_detailsimage.setImageResource(intent.getStringExtra("FOODIMAGE")?.toInt()!!)
+        intent.getStringExtra("FOODIMAGE")?.toInt()?.let { IV_detailsimage.setImageResource(it) }
         TV_detailsname.text = intent.getStringExtra("FOODNAME")
         TV_food_need.text = intent.getStringExtra("FOODINGREDIENT")
         TV_sauce.text = intent.getStringExtra("FOODSAUCE")

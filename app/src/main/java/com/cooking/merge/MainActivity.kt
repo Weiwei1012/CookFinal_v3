@@ -11,7 +11,10 @@ import com.cooking.merge.adapters.Permissions
 import com.cooking.merge.bottom_fragments.SearchFragment
 import com.cooking.merge.bottom_fragments.FavoritesFragment
 import com.cooking.merge.bottom_fragments.HomeFragment
+import com.cooking.merge.models.FooditemsModel
 import kotlinx.android.synthetic.main.activity_main.*
+
+
 
 class MainActivity : AppCompatActivity() {
 
